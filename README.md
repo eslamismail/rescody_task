@@ -5,6 +5,7 @@
 - create your database 
 - open terminal and run composer install
 - open terminal and run php artisan migrate --seed 
+- run php artisan storage:link
 - here we are installed application so we can run it with php artisan serve 
 
 ## Task headlines 
