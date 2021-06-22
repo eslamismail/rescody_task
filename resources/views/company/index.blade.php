@@ -64,7 +64,9 @@
                         </tbody>
                     </table>
                 </div>
-
+                <div class="mt-3">
+                    {{ $companies->links('pagination::bootstrap-4') }}
+                </div>
             </div>
         </div>
     </div>

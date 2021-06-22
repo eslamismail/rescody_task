@@ -60,6 +60,9 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="mt-3">
+                    {{ $employees->links('pagination::bootstrap-4') }}
+                </div>
             </div>
         </div>
     </div>
