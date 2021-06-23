@@ -23,10 +23,19 @@ class CompanyRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name' => 'required',
-            'email' => 'required|unique:companies,email',
-            'logo' => 'required|dimensions:max_width=100,max_height=100',
-        ];
+        if ($this->getMethod() == 'POST') {
+            return [
+                'name' => 'required',
+                'email' => 'required|unique:companies,email',
+                'logo' => 'required|dimensions:max_width=100,max_height=100',
+            ];
+        } else {
+            $id = $this->route()->parameters['company'];
+            return [
+                'name' => 'required',
+                'email' => "required|unique:companies,email,{$id}",
+                'logo' => 'dimensions:max_width=100,max_height=100',
+            ];
+        }
     }
 }

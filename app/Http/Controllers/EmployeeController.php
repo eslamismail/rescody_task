@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EmployeRequest;
 use App\Models\Company;
 use App\Models\Employe;
 use Illuminate\Http\Request;
@@ -42,16 +43,8 @@ class EmployeeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EmployeRequest $request)
     {
-        $request->validate([
-            'company_id' => 'required|exists:companies,id',
-            'first_name' => 'required|string|min:3',
-            'last_name' => 'required|string|min:3',
-            'email' => 'required|unique:employes,email',
-            'phone' => 'required|regex:/(01)[0-9]{9}/',
-        ]);
-
         $data = $request->only([
             'company_id',
             'first_name',
@@ -102,16 +95,8 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EmployeRequest $request, $id)
     {
-        $request->validate([
-            'company_id' => 'required|exists:companies,id',
-            'first_name' => 'required|string|min:3',
-            'last_name' => 'required|string|min:3',
-            'email' => 'required|unique:employes,email,' . $id,
-            'phone' => 'required|regex:/(01)[0-9]{9}/',
-        ]);
-
         $employe = Employe::findOrFail($id);
 
         $data = $request->only([

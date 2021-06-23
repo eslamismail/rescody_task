@@ -89,14 +89,8 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CompanyRequest $request, $id)
     {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|unique:companies,email,' . $id,
-            'logo' => 'dimensions:max_width=100,max_height=100',
-        ]);
-
         $data = $request->only([
             'name',
             'email',
